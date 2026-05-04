@@ -32,4 +32,17 @@ public class EnemyMovement : MonoBehaviour
             }
         }
     }
+    void OnCollisionEnter(Collision other)
+{
+    if (other.gameObject.CompareTag("Core"))
+    {
+        IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
+
+        if (damageable != null)
+        {
+            damageable.TakeDamage(10);
+            Debug.Log("Enemy hit core");
+        }
+    }
+}
 }
