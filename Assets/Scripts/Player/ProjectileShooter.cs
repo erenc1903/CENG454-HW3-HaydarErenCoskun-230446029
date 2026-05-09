@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ProjectileShooter : MonoBehaviour
 {
+
     public ProjectilePool projectilePool;
 
     void Update()
@@ -13,16 +14,27 @@ public class ProjectileShooter : MonoBehaviour
     }
 
     void Shoot()
+{
+    IProjectile projectileData = new BasicProjectile();
+
+    if (Input.GetKey(KeyCode.LeftShift))
     {
-        Projectile projectile = projectilePool.GetProjectile();
+        projectileData = new FireDecorator(projectileData);
 
-        if (projectile != null)
-        {
-            projectile.transform.position = transform.position + transform.forward;
-
-            projectile.Initialize(transform.forward, projectilePool);
-
-            Debug.Log("Projectile fired from pool");
-        }
+        Debug.Log("Fire decorator applied!");
     }
+
+    Debug.Log("Projectile Damage: " + projectileData.GetDamage());
+
+    Projectile projectile = projectilePool.GetProjectile();
+
+    if (projectile != null)
+    {
+        projectile.transform.position = transform.position + transform.forward;
+
+        projectile.Initialize(transform.forward, projectilePool);
+
+        Debug.Log("Projectile fired from pool");
+    }
+}
 }
