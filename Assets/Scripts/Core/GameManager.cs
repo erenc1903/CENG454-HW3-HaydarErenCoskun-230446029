@@ -11,4 +11,15 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
     }
+    public void GameOver()
+{
+    Debug.Log("Game Over");
+    Time.timeScale = 0f;
+}
+
+public void WinGame()
+{
+    Debug.Log("You Win");
+    Time.timeScale = 0f;
+}
 }

@@ -23,7 +23,7 @@ public class CoreHealth : MonoBehaviour, IDamageable
 
         if (currentHealth <= 0)
         {
-            Debug.Log("GAME OVER");
+            GameManager.Instance.GameOver();
         }
     }
 }
